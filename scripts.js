@@ -1,5 +1,9 @@
 let numberOfCards;
 let newCards = document.querySelector("ul");
+let check = document.querySelectorAll(".flipped")
+let first;
+let second;
+let contador = 0;
 
 let cards = [];
 let imagesCards = [
@@ -17,9 +21,6 @@ inicioDoJogo();
 function comparador() { 
     return Math.random() - 0.5; 
 }
-
-
-
 
 function inicioDoJogo(){
     numberOfCards = Number(prompt("Bem vindo(a) ao Parrot Card Game! Digite o número de cartas par que você deseja jogar, este numero deverá ser entre 4 e 14: "));
@@ -52,9 +53,28 @@ function adicionarCartas(){
     }
 }
 
+function clickCards(click){
+    if(contador === 0){
+        first = click;
+        first.classList.add("flipped");
+        contador + 1;
+    }
+    else if(contador === 1){
+        second = click;
+        second.classList.add("flipped");
+        contador + 1;
+        setTimeout(checkCards, 1000);
+    }
+    checkCards();
+}
 
-
-
-function clickCards(teste){
-    teste.classList.add("flipped")
+function checkCards(){
+    if(first.querySelector(".back-face img").src !== second.querySelector(".back-face img").src){
+        first.classList.remove("flipped");
+        second.classList.remove("flipped");
+        contador = 0;    
+    }
+    else{
+        contador = 0;
+    }
 }
