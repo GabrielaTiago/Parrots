@@ -36,7 +36,14 @@ img{
     background-color: #A7E9AF;
     border: 1px solid #99cea8;
     border-radius: 5px;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
+    transform-style: preserve-3d;
+    transition: 0.5s;
+}
+
+.frente{
+  transform: rotateY(180deg);
 }
