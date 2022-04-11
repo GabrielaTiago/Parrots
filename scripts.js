@@ -1,18 +1,25 @@
 let numberOfCards;
-let newCards = document.querySelector(ul);
+let newCards = document.querySelector("ul");
 
-const cards = [];
-const imagesCards = [
-    "imagens/bobrossparrot.gif",
-    "imagens/explodyparrot.gif",
-    "imagens/fiestaparrot.gif",
-    "imagens/metalparrot.gif",
-    "imagens/revertitparrot.gif",
-    "imagens/tripletsparrot.gif",
-    "imagens/unicornparrot.gif"
+let cards = [];
+let imagesCards = [
+    "images/bobrossparrot.gif",
+    "images/explodyparrot.gif",
+    "images/fiestaparrot.gif",
+    "images/metalparrot.gif",
+    "images/revertitparrot.gif",
+    "images/tripletsparrot.gif",
+    "images/unicornparrot.gif"
 ];
 
 inicioDoJogo();
+
+function comparador() { 
+    return Math.random() - 0.5; 
+}
+
+
+
 
 function inicioDoJogo(){
     numberOfCards = Number(prompt("Bem vindo(a) ao Parrot Card Game! Digite o número de cartas par que você deseja jogar, este numero deverá ser entre 4 e 14: "));
@@ -20,23 +27,34 @@ function inicioDoJogo(){
     while (numberOfCards === null || numberOfCards < 4 || numberOfCards > 14 || (numberOfCards % 2) !== 0) {
         numberOfCards = Number(prompt("Digite um número par entre 4 e 14 para jogar!"));
     }
-   adicionarCartas(); 
+   seeCards(); 
+}
+function seeCards(){
+    imagesCards.sort(comparador); 
+    cards = imagesCards.slice(0, numberOfCards/2);
+    cards = cards.concat(cards);
+    cards.sort(comparador); 
+    console.log(cards);
+    adicionarCartas();
 }
 
 function adicionarCartas(){
-
     let addCards = 0
-    while(addCards <= numberOfCards){
+    while(addCards < numberOfCards){
         newCards.innerHTML += `
-        <li class="card"><img class="frente" src="images/front.png" alt="papagaio"></li>
-        <li class="card"><img class="verso" src="${imagesCards[i]}" alt="imagem-selecionada"></li>
+        <div class="cards" onclick="clickCards(this)">
+            <li class="face front-face"><img src="images/front.png" alt="papagaio"></li>
+            <li class="face back-face"><img src="${cards[addCards]}" alt="imagem-selecionada"></li>
+        </div>
         `;
+        console.log(cards);
         addCards++;
     }
 }
-function mixCards(){
-    imagesCards.sort(comparador); // Após esta linha, a Array estará embaralhada      
-    function comparador() { 
-        return Math.random() - 0.5; 
-    }
+
+
+
+
+function clickCards(teste){
+    teste.classList.add("flipped")
 }

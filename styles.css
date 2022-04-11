@@ -19,31 +19,64 @@ header h1{
     color: #75B79E;
 }
 
-main {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
 img{
     height: 100px;
     width: 100px;
 }
 
-.card {
-    height: 146px;
+.container-cards{
+    height: 360px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cards {
     width: 117px;
+    height: 146px;
+    position: relative;
+}
+
+.face {
+    width: 100%;
+    height: 100%;
     background-color: #A7E9AF;
     border: 1px solid #99cea8;
     border-radius: 5px;
     box-sizing: border-box;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
     transform-style: preserve-3d;
-    transition: 0.5s;
 }
 
-.frente{
-  transform: rotateY(180deg);
+.back-face {
+    transform: rotateY(180deg);
+ }
+
+.cards.flipped .back-face {
+    transform: rotateY(0deg);
 }
+
+.cards.flipped .front-face {
+    transform: rotateY(-180deg);
+}
+
+@media (max-width: 640px){
+    header h1{
+      font-size: 46px;
+    }
+    .container-cards{
+      width: 58%;
+    }
+    .card{
+      margin-bottom: 10%;
+    }
+  }
