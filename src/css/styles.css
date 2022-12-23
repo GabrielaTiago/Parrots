@@ -1,90 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap");
 
 * {
-    box-sizing: border-box;
-    --color-title: #75B79E;
-    --color-card: #A7E9AF;
-    --color-background: #EEF9BF;
-    --color-card-border: #99CEA8;
+  box-sizing: border-box;
+  --color-title: #75b79e;
+  --color-card: #a7e9af;
+  --color-background: #eef9bf;
+  --color-card-border: #99cea8;
 }
 
-body{
-    background-color: var(--color-background);
-    font-family: 'Roboto', sans-serif;
+body {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: "Roboto", sans-serif;
+
+  background-color: var(--color-background);
 }
 
-header{
-    width: 100%;
-    margin-top: 40px;
-    margin: 40px auto 47px auto;
-    display: flex;
-    justify-content: center;
+header {
+  width: 100%;
+  margin: 40px auto 47px auto;
 }
 
-header h1{
-    font-size: 56px;
-    font-weight: 700;
-    color: var(--color-title);
+img {
+  height: 100px;
+  width: 100px;
 }
 
-img{
-    height: 100px;
-    width: 100px;
+.app-title {
+  text-align: center;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--color-title);
 }
 
-.container-cards{
-    height: 360px;
-    max-width: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+.container-cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
 }
 
 .cards {
-    width: 117px;
-    height: 146px;
-    position: relative;
+  width: 117px;
+  height: 146px;
+  position: relative;
 }
 
 .face {
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-card);
-    border: 1px solid var(--color-card-border);
-    border-radius: 5px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    backface-visibility: hidden;
-    transition: all .5s;
-    transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-card-border);
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: all 0.5s;
+  transform-style: preserve-3d;
 }
 
 .back-face {
-    transform: rotateY(180deg);
- }
+  transform: rotateY(180deg);
+}
 
 .cards.flipped .back-face {
-    transform: rotateY(0deg);
+  transform: rotateY(0deg);
 }
 
 .cards.flipped .front-face {
-    transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 
-@media (max-width: 640px){
-    header h1{
-      font-size: 46px;
-    }
-    .container-cards{
-      width: 58%;
-    }
-    .card{
-      margin-bottom: 10%;
-    }
+@media (max-width: 640px) {
+  .app-title {
+    font-size: 46px;
   }
+  .card {
+    margin-bottom: 10%;
+  }
+}
