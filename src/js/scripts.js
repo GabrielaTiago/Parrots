@@ -7,13 +7,13 @@ let contador = 0;
 
 let cards = [];
 let imagesCards = [
-    "images/bobrossparrot.gif",
-    "images/explodyparrot.gif",
-    "images/fiestaparrot.gif",
-    "images/metalparrot.gif",
-    "images/revertitparrot.gif",
-    "images/tripletsparrot.gif",
-    "images/unicornparrot.gif"
+    "src/assets/images/bobrossparrot.gif",
+    "src/assets/images/explodyparrot.gif",
+    "src/assets/images/fiestaparrot.gif",
+    "src/assets/images/metalparrot.gif",
+    "src/assets/images/revertitparrot.gif",
+    "src/assets/images/tripletsparrot.gif",
+    "src/assets/images/unicornparrot.gif"
 ];
 
 inicioDoJogo();
@@ -44,7 +44,7 @@ function adicionarCartas(){
     while(addCards < numberOfCards){
         newCards.innerHTML += `
         <div class="cards" onclick="clickCards(this)">
-            <li class="face front-face"><img src="images/front.png" alt="papagaio"></li>
+            <li class="face front-face"><img src="src/assets/images/front.png" alt="papagaio"></li>
             <li class="face back-face"><img src="${cards[addCards]}" alt="imagem-selecionada"></li>
         </div>
         `;
