@@ -44,7 +44,7 @@ function adicionarCartas(){
     while(addCards < numberOfCards){
         newCards.innerHTML += `
         <div class="cards" onclick="clickCards(this)">
-            <li class="face front-face"><img src="src/assets/images/front.png" alt="papagaio"></li>
+            <li class="face front-face"><img src="src/assets/images/parrot.png" alt="papagaio"></li>
             <li class="face back-face"><img src="${cards[addCards]}" alt="imagem-selecionada"></li>
         </div>
         `;
