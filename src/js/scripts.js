@@ -1,3 +1,6 @@
+const MINIMUM_NUMBER_OF_CARDS = 4;
+const MAXIMUM_NUMBER_OF_CARDS = 14;
+
 let numberOfCards;
 let newCards = document.querySelector("ul");
 let check = document.querySelectorAll(".flipped");
@@ -16,31 +19,36 @@ let imagesCards = [
   "src/assets/images/unicornparrot.gif",
 ];
 
-inicioDoJogo();
+startGame();
 
 function comparador() {
   return Math.random() - 0.5;
 }
 
-function inicioDoJogo() {
-  numberOfCards = Number(
-    prompt(
-      "Bem vindo(a) ao Parrot Card Game! Digite o número de cartas par que você deseja jogar, este numero deverá ser entre 4 e 14: "
-    )
-  );
+function startGame() {
+  const startPromptMessage = `Bem vindo(a) ao Parrot Card Game! 🤗🦜\n
+  Digite um número par de cartas que você deseja jogar.\n
+  Este número deverá ser entre ${MINIMUM_NUMBER_OF_CARDS} e ${MAXIMUM_NUMBER_OF_CARDS}`;
+  const errorPromptMessage = `Opção inválida 🙁\n
+    Digite um número par entre ${MINIMUM_NUMBER_OF_CARDS} e ${MAXIMUM_NUMBER_OF_CARDS} para jogar!`;
 
-  while (
-    numberOfCards === null ||
-    numberOfCards < 4 ||
-    numberOfCards > 14 ||
-    numberOfCards % 2 !== 0
-  ) {
-    numberOfCards = Number(
-      prompt("Digite um número par entre 4 e 14 para jogar!")
-    );
+  numberOfCards = parseInt(prompt(startPromptMessage));
+
+  while (validatesTheNumberOfCards() === false) {
+    numberOfCards = parseInt(prompt(errorPromptMessage));
   }
+
   seeCards();
 }
+
+function validatesTheNumberOfCards() {
+  const isEven = numberOfCards % 2 === 0;
+  const isGreaterThanMinimum = numberOfCards >= MINIMUM_NUMBER_OF_CARDS;
+  const isLessThanMaximum = numberOfCards <= MAXIMUM_NUMBER_OF_CARDS;
+
+  return isEven && isGreaterThanMinimum && isLessThanMaximum;
+}
+
 function seeCards() {
   imagesCards.sort(comparador);
   cards = imagesCards.slice(0, numberOfCards / 2);
