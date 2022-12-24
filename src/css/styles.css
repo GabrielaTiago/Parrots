@@ -55,14 +55,14 @@ img {
 .face {
   width: 100%;
   height: 100%;
-  background-color: var(--color-card);
-  border: 1px solid var(--color-card-border);
-  border-radius: 5px;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
+  background-color: var(--color-card);
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-card-border);
+  border-radius: 5px;
   backface-visibility: hidden;
   transition: all 0.5s;
   transform-style: preserve-3d;
