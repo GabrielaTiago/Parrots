@@ -1,6 +1,7 @@
 const MINIMUM_NUMBER_OF_CARDS = 4;
 const MAXIMUM_NUMBER_OF_CARDS = 14;
 const ONE_SECOND = 1000;
+const TRANSITION_TIME = 500;
 let PARROTS = [
   "bobrossparrot",
   "explodyparrot",
@@ -124,7 +125,7 @@ function checksIdenticalsCards() {
     firstMove.classList.add("right");
     secondMove.classList.add("right");
 
-    move = [];
+    setTimeout(checkTheEndOfTheGame, TRANSITION_TIME);
   } else {
     setTimeout(turnCardToInitialPosition, ONE_SECOND);
   }
@@ -136,4 +137,16 @@ function turnCardToInitialPosition() {
     element.classList.remove("flipped");
   });
   move = [];
+}
+
+function checkTheEndOfTheGame() {
+  const numberOfFlippedCards = document.querySelectorAll(".right").length;
+  const successMessage = `Parabéns!!!👏👏👏\n🏆Você ganhou em ${moveCounter} jogadas\n⏱ Seu tempo de jogo foi de ${playingTime} segundos`;
+
+  if (numberOfCards === numberOfFlippedCards) {
+    clearInterval(interval);
+    alert(successMessage);
+  } else {
+    move = [];
+  }
 }
