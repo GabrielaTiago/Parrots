@@ -146,7 +146,17 @@ function checkTheEndOfTheGame() {
   if (numberOfCards === numberOfFlippedCards) {
     clearInterval(interval);
     alert(successMessage);
+    restartGame();
   } else {
     move = [];
+  }
+}
+
+function restartGame() {
+  const restartMessage = "Você deseja jogar novamente?";
+  const playAgain = confirm(restartMessage);
+
+  if (playAgain) {
+    window.location.reload(true);
   }
 }
