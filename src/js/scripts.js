@@ -1,80 +1,162 @@
-let numberOfCards;
-let newCards = document.querySelector("ul");
-let check = document.querySelectorAll(".flipped")
-let first;
-let second;
-let contador = 0;
-
-let cards = [];
-let imagesCards = [
-    "src/assets/images/bobrossparrot.gif",
-    "src/assets/images/explodyparrot.gif",
-    "src/assets/images/fiestaparrot.gif",
-    "src/assets/images/metalparrot.gif",
-    "src/assets/images/revertitparrot.gif",
-    "src/assets/images/tripletsparrot.gif",
-    "src/assets/images/unicornparrot.gif"
+const MINIMUM_NUMBER_OF_CARDS = 4;
+const MAXIMUM_NUMBER_OF_CARDS = 14;
+const ONE_SECOND = 1000;
+const TRANSITION_TIME = 500;
+let PARROTS = [
+  "bobrossparrot",
+  "explodyparrot",
+  "fiestaparrot",
+  "metalparrot",
+  "revertitparrot",
+  "tripletsparrot",
+  "unicornparrot",
 ];
 
-inicioDoJogo();
+let numberOfCards = 0;
+let deckOfCards = [];
+let move = [];
+let moveCounter = 0;
+let playingTime = 0;
+let interval = 0;
 
-function comparador() { 
-    return Math.random() - 0.5; 
+shuffleInitialVariables();
+startGame();
+dynamicallyDisplaysCards();
+shuffleCards();
+rendersCards();
+interval = setInterval(startsTimer, ONE_SECOND);
+
+function startGame() {
+  const startPromptMessage = `Bem vindo(a) ao Parrot Card Game! 🤗🦜\n
+  Digite um número par de cartas que você deseja jogar.\n
+  Este número deverá ser entre ${MINIMUM_NUMBER_OF_CARDS} e ${MAXIMUM_NUMBER_OF_CARDS}`;
+  const errorPromptMessage = `Opção inválida 🙁\n
+    Digite um número par entre ${MINIMUM_NUMBER_OF_CARDS} e ${MAXIMUM_NUMBER_OF_CARDS} para jogar!`;
+
+  numberOfCards = parseInt(prompt(startPromptMessage));
+
+  while (validatesTheNumberOfCards() === false) {
+    numberOfCards = parseInt(prompt(errorPromptMessage));
+  }
 }
 
-function inicioDoJogo(){
-    numberOfCards = Number(prompt("Bem vindo(a) ao Parrot Card Game! Digite o número de cartas par que você deseja jogar, este numero deverá ser entre 4 e 14: "));
+function validatesTheNumberOfCards() {
+  const isEven = numberOfCards % 2 === 0;
+  const isGreaterThanMinimum = numberOfCards >= MINIMUM_NUMBER_OF_CARDS;
+  const isLessThanMaximum = numberOfCards <= MAXIMUM_NUMBER_OF_CARDS;
 
-    while (numberOfCards === null || numberOfCards < 4 || numberOfCards > 14 || (numberOfCards % 2) !== 0) {
-        numberOfCards = Number(prompt("Digite um número par entre 4 e 14 para jogar!"));
-    }
-   seeCards(); 
-}
-function seeCards(){
-    imagesCards.sort(comparador); 
-    cards = imagesCards.slice(0, numberOfCards/2);
-    cards = cards.concat(cards);
-    cards.sort(comparador); 
-    console.log(cards);
-    adicionarCartas();
+  return isEven && isGreaterThanMinimum && isLessThanMaximum;
 }
 
-function adicionarCartas(){
-    let addCards = 0
-    while(addCards < numberOfCards){
-        newCards.innerHTML += `
-        <div class="cards" onclick="clickCards(this)">
-            <li class="face front-face"><img src="src/assets/images/front.png" alt="papagaio"></li>
-            <li class="face back-face"><img src="${cards[addCards]}" alt="imagem-selecionada"></li>
-        </div>
-        `;
-        console.log(cards);
-        addCards++;
-    }
+function dynamicallyDisplaysCards() {
+  const quantityOfPairs = numberOfCards / 2;
+  for (let i = 0; i < quantityOfPairs; i++) {
+    const card = createCard(i);
+    deckOfCards.push(card);
+    deckOfCards.push(card);
+  }
+
+  return deckOfCards;
 }
 
-function clickCards(click){
-    if(contador === 0){
-        first = click;
-        first.classList.add("flipped");
-        contador + 1;
-    }
-    else if(contador === 1){
-        second = click;
-        second.classList.add("flipped");
-        contador + 1;
-        setTimeout(checkCards, 1000);
-    }
-    checkCards();
+function createCard(index) {
+  const parrot = PARROTS[index];
+  const cardHTML = `
+  <div class="cards" onclick="clickCards(this)">
+    <li class="face front-face">
+      <img src="src/assets/images/parrot.png" alt="papagaio" />
+    </li>
+    <li class="face back-face">
+      <img src="src/assets/images/${parrot}.gif" alt="parrot-${parrot}" />
+    </li>
+  </div>
+  `;
+  return cardHTML;
 }
 
-function checkCards(){
-    if(first.querySelector(".back-face img").src !== second.querySelector(".back-face img").src){
-        first.classList.remove("flipped");
-        second.classList.remove("flipped");
-        contador = 0;    
+function shuffleInitialVariables() {
+  return PARROTS.sort(comparator);
+}
+
+function shuffleCards() {
+  return deckOfCards.sort(comparator);
+}
+
+function comparator() {
+  return Math.random() - 0.5;
+}
+
+function rendersCards() {
+  let container = document.querySelector(".container-cards");
+  for (let i in deckOfCards) {
+    const card = deckOfCards[i];
+    container.innerHTML += card;
+  }
+}
+
+function startsTimer() {
+  playingTime++;
+  document.querySelector(".timer").innerHTML = playingTime;
+}
+
+function clickCards(clickedCard) {
+  if (isAValidCard(clickedCard)) {
+    clickedCard.classList.add("flipped");
+    move.push(clickedCard);
+
+    if (move.length === 2) {
+      checksIdenticalsCards();
     }
-    else{
-        contador = 0;
-    }
+  }
+}
+
+function isAValidCard(card) {
+  const flipped = card.classList.contains("flipped");
+  const right = card.classList.contains("rigth");
+
+  return !flipped || !right;
+}
+
+function checksIdenticalsCards() {
+  const firstMove = move[0];
+  const secondMove = move[1];
+
+  if (firstMove.innerHTML === secondMove.innerHTML) {
+    firstMove.classList.add("right");
+    secondMove.classList.add("right");
+
+    setTimeout(checkTheEndOfTheGame, TRANSITION_TIME);
+  } else {
+    setTimeout(turnCardToInitialPosition, ONE_SECOND);
+  }
+  moveCounter++;
+}
+
+function turnCardToInitialPosition() {
+  move.forEach((element) => {
+    element.classList.remove("flipped");
+  });
+  move = [];
+}
+
+function checkTheEndOfTheGame() {
+  const numberOfFlippedCards = document.querySelectorAll(".right").length;
+  const successMessage = `Parabéns!!!👏👏👏\n🏆Você ganhou em ${moveCounter} jogadas\n⏱ Seu tempo de jogo foi de ${playingTime} segundos`;
+
+  if (numberOfCards === numberOfFlippedCards) {
+    clearInterval(interval);
+    alert(successMessage);
+    restartGame();
+  } else {
+    move = [];
+  }
+}
+
+function restartGame() {
+  const restartMessage = "Você deseja jogar novamente?";
+  const playAgain = confirm(restartMessage);
+
+  if (playAgain) {
+    window.location.reload(true);
+  }
 }
