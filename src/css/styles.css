@@ -80,6 +80,25 @@ img {
   transform: rotateY(-180deg);
 }
 
+.timer {
+  min-width: 60px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+
+  background-color: var(--color-title);
+  color: var(--color-background);
+}
+
 @media (max-width: 640px) {
   .app-title {
     font-size: 46px;

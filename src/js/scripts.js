@@ -15,12 +15,15 @@ let numberOfCards = 0;
 let deckOfCards = [];
 let move = [];
 let moveCounter = 0;
+let playingTime = 0;
+let interval = 0;
 
 shuffleInitialVariables();
 startGame();
 dynamicallyDisplaysCards();
 shuffleCards();
 rendersCards();
+interval = setInterval(startsTimer, ONE_SECOND);
 
 function startGame() {
   const startPromptMessage = `Bem vindo(a) ao Parrot Card Game! 🤗🦜\n
@@ -88,6 +91,11 @@ function rendersCards() {
     const card = deckOfCards[i];
     container.innerHTML += card;
   }
+}
+
+function startsTimer() {
+  playingTime++;
+  document.querySelector(".timer").innerHTML = playingTime;
 }
 
 function clickCards(clickedCard) {
