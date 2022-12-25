@@ -1,5 +1,6 @@
 const MINIMUM_NUMBER_OF_CARDS = 4;
 const MAXIMUM_NUMBER_OF_CARDS = 14;
+const ONE_SECOND = 1000;
 let PARROTS = [
   "bobrossparrot",
   "explodyparrot",
@@ -20,7 +21,6 @@ startGame();
 dynamicallyDisplaysCards();
 shuffleCards();
 rendersCards();
-
 
 function startGame() {
   const startPromptMessage = `Bem vindo(a) ao Parrot Card Game! 🤗🦜\n
@@ -117,6 +117,15 @@ function checksIdenticalsCards() {
     secondMove.classList.add("right");
 
     move = [];
+  } else {
+    setTimeout(turnCardToInitialPosition, ONE_SECOND);
   }
   moveCounter++;
+}
+
+function turnCardToInitialPosition() {
+  move.forEach((element) => {
+    element.classList.remove("flipped");
+  });
+  move = [];
 }
