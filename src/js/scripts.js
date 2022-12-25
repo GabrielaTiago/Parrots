@@ -12,17 +12,15 @@ let PARROTS = [
 
 let numberOfCards = 0;
 let deckOfCards = [];
-
-let check = document.querySelectorAll(".flipped");
-let first;
-let second;
-let contador = 0;
+let move = [];
+let moveCounter = 0;
 
 shuffleInitialVariables();
 startGame();
 dynamicallyDisplaysCards();
 shuffleCards();
 rendersCards();
+
 
 function startGame() {
   const startPromptMessage = `Bem vindo(a) ao Parrot Card Game! 🤗🦜\n
@@ -92,29 +90,33 @@ function rendersCards() {
   }
 }
 
-function clickCards(click) {
-  if (contador === 0) {
-    first = click;
-    first.classList.add("flipped");
-    contador + 1;
-  } else if (contador === 1) {
-    second = click;
-    second.classList.add("flipped");
-    contador + 1;
-    setTimeout(checkCards, 1000);
+function clickCards(clickedCard) {
+  if (isAValidCard(clickedCard)) {
+    clickedCard.classList.add("flipped");
+    move.push(clickedCard);
+
+    if (move.length === 2) {
+      checksIdenticalsCards();
+    }
   }
-  checkCards();
 }
 
-function checkCards() {
-  if (
-    first.querySelector(".back-face img").src !==
-    second.querySelector(".back-face img").src
-  ) {
-    first.classList.remove("flipped");
-    second.classList.remove("flipped");
-    contador = 0;
-  } else {
-    contador = 0;
+function isAValidCard(card) {
+  const flipped = card.classList.contains("flipped");
+  const right = card.classList.contains("rigth");
+
+  return !flipped || !right;
+}
+
+function checksIdenticalsCards() {
+  const firstMove = move[0];
+  const secondMove = move[1];
+
+  if (firstMove.innerHTML === secondMove.innerHTML) {
+    firstMove.classList.add("right");
+    secondMove.classList.add("right");
+
+    move = [];
   }
+  moveCounter++;
 }
