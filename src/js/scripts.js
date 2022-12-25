@@ -88,6 +88,11 @@ function comparator() {
 
 function rendersCards() {
   let container = document.querySelector(".container-cards");
+  let containerWidth = 142 * (numberOfCards / 2);
+  containerWidth = containerWidth.toString() + "px";
+
+  container.style.maxWidth = containerWidth;
+
   for (let i in deckOfCards) {
     const card = deckOfCards[i];
     container.innerHTML += card;
