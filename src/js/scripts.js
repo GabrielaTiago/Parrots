@@ -1,29 +1,28 @@
 const MINIMUM_NUMBER_OF_CARDS = 4;
 const MAXIMUM_NUMBER_OF_CARDS = 14;
+let PARROTS = [
+  "bobrossparrot",
+  "explodyparrot",
+  "fiestaparrot",
+  "metalparrot",
+  "revertitparrot",
+  "tripletsparrot",
+  "unicornparrot",
+];
 
-let numberOfCards;
-let newCards = document.querySelector("ul");
+let numberOfCards = 0;
+let deckOfCards = [];
+
 let check = document.querySelectorAll(".flipped");
 let first;
 let second;
 let contador = 0;
 
-let cards = [];
-let imagesCards = [
-  "src/assets/images/bobrossparrot.gif",
-  "src/assets/images/explodyparrot.gif",
-  "src/assets/images/fiestaparrot.gif",
-  "src/assets/images/metalparrot.gif",
-  "src/assets/images/revertitparrot.gif",
-  "src/assets/images/tripletsparrot.gif",
-  "src/assets/images/unicornparrot.gif",
-];
-
+shuffleInitialVariables();
 startGame();
-
-function comparador() {
-  return Math.random() - 0.5;
-}
+dynamicallyDisplaysCards();
+shuffleCards();
+rendersCards();
 
 function startGame() {
   const startPromptMessage = `Bem vindo(a) ao Parrot Card Game! 🤗🦜\n
@@ -37,8 +36,6 @@ function startGame() {
   while (validatesTheNumberOfCards() === false) {
     numberOfCards = parseInt(prompt(errorPromptMessage));
   }
-
-  seeCards();
 }
 
 function validatesTheNumberOfCards() {
@@ -49,26 +46,49 @@ function validatesTheNumberOfCards() {
   return isEven && isGreaterThanMinimum && isLessThanMaximum;
 }
 
-function seeCards() {
-  imagesCards.sort(comparador);
-  cards = imagesCards.slice(0, numberOfCards / 2);
-  cards = cards.concat(cards);
-  cards.sort(comparador);
-  console.log(cards);
-  adicionarCartas();
+function dynamicallyDisplaysCards() {
+  const quantityOfPairs = numberOfCards / 2;
+  for (let i = 0; i < quantityOfPairs; i++) {
+    const card = createCard(i);
+    deckOfCards.push(card);
+    deckOfCards.push(card);
+  }
+
+  return deckOfCards;
 }
 
-function adicionarCartas() {
-  let addCards = 0;
-  while (addCards < numberOfCards) {
-    newCards.innerHTML += `
-        <div class="cards" onclick="clickCards(this)">
-            <li class="face front-face"><img src="src/assets/images/parrot.png" alt="papagaio"></li>
-            <li class="face back-face"><img src="${cards[addCards]}" alt="imagem-selecionada"></li>
-        </div>
-        `;
-    console.log(cards);
-    addCards++;
+function createCard(index) {
+  const parrot = PARROTS[index];
+  const cardHTML = `
+  <div class="cards" onclick="clickCards(this)">
+    <li class="face front-face">
+      <img src="src/assets/images/parrot.png" alt="papagaio" />
+    </li>
+    <li class="face back-face">
+      <img src="src/assets/images/${parrot}.gif" alt="parrot-${parrot}" />
+    </li>
+  </div>
+  `;
+  return cardHTML;
+}
+
+function shuffleInitialVariables() {
+  return PARROTS.sort(comparator);
+}
+
+function shuffleCards() {
+  return deckOfCards.sort(comparator);
+}
+
+function comparator() {
+  return Math.random() - 0.5;
+}
+
+function rendersCards() {
+  let container = document.querySelector(".container-cards");
+  for (let i in deckOfCards) {
+    const card = deckOfCards[i];
+    container.innerHTML += card;
   }
 }
 
