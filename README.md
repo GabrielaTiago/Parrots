@@ -15,7 +15,9 @@
 
 ### :clipboard: Descrição
 
-Parrots é um jogo da memória temático com aleatoridade, efeitos e transição, responsividade e papagaios dançantes!
+Parrots é um jogo da memória temático com aleatoridade, efeitos e transição, responsividade!
+O jogo inclui vários tipos de papagaios dançantes diferentes como personagens e o objetivo é encontrar todos os pares de cartas correspondentes. 
+O jogo é desenvolvido em JavaScript e pode ser jogado no navegador.
 
 #### 🦜 [Acesse aqui](https://gabrielatiago.github.io/Parrots/)
 
@@ -62,7 +64,7 @@ $~$
 
 - [Badges para Github](https://github.com/alexandresanlim/Badges4-README.md-Profile#-database-)
 - [README Inspiração de README](https://gist.github.com/luanalessa/7f98467a5ed62d00dcbde67d4556a1e4#file-readme-md)
-- [Diven Education](https://www.driven.com.br)
+- [Driven Education](https://www.driven.com.br)
 
 ---
 
