@@ -99,6 +99,10 @@ img {
   color: var(--color-background);
 }
 
+.no-click {
+  pointer-events: none;
+}
+
 @media (max-width: 640px) {
   .app-title {
     font-size: 46px;

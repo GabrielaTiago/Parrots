@@ -110,9 +110,18 @@ function clickCards(clickedCard) {
     move.push(clickedCard);
 
     if (move.length === 2) {
+      preventsAdditionalClicks();
       checksIdenticalsCards();
     }
   }
+}
+
+function preventsAdditionalClicks() {
+  document.querySelector(".container-cards").classList.add("no-click");
+}
+
+function allowClicks() {
+  document.querySelector(".container-cards").classList.remove("no-click");
 }
 
 function isAValidCard(card) {
@@ -141,6 +150,7 @@ function turnCardToInitialPosition() {
   move.forEach((element) => {
     element.classList.remove("flipped");
   });
+  allowClicks();
   move = [];
 }
 
@@ -153,6 +163,7 @@ function checkTheEndOfTheGame() {
     alert(successMessage);
     restartGame();
   } else {
+    allowClicks();
     move = [];
   }
 }
