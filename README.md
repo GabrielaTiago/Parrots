@@ -1,6 +1,4 @@
-<p align="center">
-<img src="https://images.emojiterra.com/twitter/v13.1/512px/1f99c.png" height="80px"/>
-</p>
+<p align="center"><img src="https://images.emojiterra.com/twitter/v13.1/512px/1f99c.png" alt="icone do instagram" height="80px"/></p>
 
 # <p align = "center">Parrots</p>
 
@@ -13,42 +11,35 @@
    <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E" heigth="30px"/>
 </p>
 
-### :clipboard: Descrição
+## :clipboard: Descrição
 
 Parrots é um jogo da memória temático com aleatoridade, efeitos e transição, responsividade!
-O jogo inclui vários tipos de papagaios dançantes diferentes como personagens e o objetivo é encontrar todos os pares de cartas correspondentes. 
+O jogo inclui vários tipos de papagaios dançantes diferentes como personagens e o objetivo é encontrar todos os pares de cartas correspondentes.
 O jogo é desenvolvido em JavaScript e pode ser jogado no navegador.
 
-#### 🦜 [Acesse aqui](https://gabrielatiago.github.io/Parrots/)
+🦜 [**Acesse aqui**](https://gabrielatiago.github.io/Parrots/)
 
----
+## :computer: Telas
 
-### :computer: Telas
+### Desktop
 
-<p align="center">
-    <h5>Desktop:</h5>
-    <img src="src/assets/images/screen/large.png" alt="viewing the app on a large screen">
-    <h5>Tablet:</h5>
-    <img src="src/assets/images/screen/medium.png" alt="viewing the app on a medium screen">
-    <h5>Mobile:</h5>
-    <img src="src/assets/images/screen/mobile.png" alt="viewing the app on a small screen">
-</p>
+![app view on a large screen](src/assets/images/screen/large.png)
 
-$~$
+### Tablet
 
----
+![app view on a medium screen](src/assets/images/screen/medium.png)
 
-### 🎮 Playing
+### Mobile
+
+![app view on a mobile screen](src/assets/images/screen/mobile.png)
+
+## 🎮 Usando
 
 <p align="center">
-    <img width="600" src="src/assets/images/screen/playing-parrots.gif">
+    <img width="600" src="src/assets/images/screen/playing-parrots.gif" alt="jogando o jogo da memória">
 </p>
 
-$~$
-
----
-
-### :books: Lições Aprendidas
+## :books: Lições Aprendidas
 
 - Variáveis de controle
 - Manipulação do DOM
@@ -58,18 +49,24 @@ $~$
 - Separação de responsabilidades
 - Código limpo
 
----
-
-### :bulb: Reconhecimentos
+## :bulb: Reconhecimentos
 
 - [Badges para Github](https://github.com/alexandresanlim/Badges4-README.md-Profile#-database-)
-- [README Inspiração de README](https://gist.github.com/luanalessa/7f98467a5ed62d00dcbde67d4556a1e4#file-readme-md)
+- [Inspiração de README](https://gist.github.com/luanalessa/7f98467a5ed62d00dcbde67d4556a1e4#file-readme-md)
 - [Driven Education](https://www.driven.com.br)
 
----
+## :muscle: Contribuição
 
-### 👩‍🦱 Autora
+Contribuições são bem-vindas! Se você encontrar algum problema ou tiver sugestões de melhoria, abra uma *issue* ou envie um *pull request*.
 
-- Gabriela Tiago é uma aluna de desenvolvimento web de Fullstack na Driven Education. Percorrendo o caminho do conhecimento, buscando aprimorar suas habilidades técnicas e de softskills, para que ela possa melhorar o trabalho que desenvolve.
+## :woman_technologist: Autora
 
-<br>[🔝 De volta ao topo](#parrots)<br>
+Gabriela Tiago de Araújo
+
+- email: <gabrielatiagodearaujo@outlook.com>
+- linkedin: <https://www.linkedin.com/in/gabrielatiago/>
+- portfolio: <https://gabrielatiago.vercel.app>
+
+$~$
+
+[🔝 De volta ao topo](#parrots)
